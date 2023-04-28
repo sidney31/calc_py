@@ -1,8 +1,7 @@
 from model import Model
 from view import View
 
-
-class Controller:
+class Controller: # реализация патерна mvc
     def __init__(self) -> None:
         self.model = Model()
         self.view = View(self)
