@@ -1,13 +1,11 @@
 import tkinter as tk
 from tkinter import ttk
 
-
 class View(tk.Tk):
     def __init__(self, controller) -> None:
         super().__init__()
         self.controller = controller 
         
-
     def main(self):
         self.title("Калькулятор")
         self.resizable(width=False, height=False)
@@ -18,12 +16,12 @@ class View(tk.Tk):
         self.RootFrame.pack(padx=10, pady=10)
  
         buttons = [
-            ["!", "√", "e", "%", "←", "C"],
-            ["x²", "ʸ√x", "ln", "lg", "logᵧ", "÷"],
-            ["xʸ", "π", 7, 8, 9, "×"],
-            ["(", "tg", 4, 5, 6, "-"],
-            [")","cos", 1, 2, 3, "+"],
-            [",", "sin", 0, "00", ".", "="],
+            ["!", "e", "(", ")", "←", "C"],
+            ["xʸ", "ʸ√x", "ln", "lg", "logᵧ", "÷"],
+            ["%", "π", 7, 8, 9, "×"],
+            ["e", "tg", 4, 5, 6, "-"],
+            ["x²", "cos", 1, 2, 3, "+"],
+            ["√", "sin", 0, "00", "000", "="],
         ]
 
         EnterField = ttk.Entry(self.RootFrame,
