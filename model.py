@@ -26,14 +26,15 @@ class Model:
     def loge(self, num): # для логарифма по основанию е
         return math.log(num, math.e)
 
-    def CalcPercent(self, result): #это говно-код, но он работает
+    def CalcPercent(self, result): #говно-код, но работает
+        #конструкция try-except нужня для отлова ошибок, в случае если в блоке try возникнет ошибка, программа не завершится 👍
         try:
-            expression = re.search(r"\d+.\d+%", result).group(0)
+            expression = re.search(r"\d+.\d+%", result).group(0) #регулярка для надо
             result = result.replace(expression, "")
 
             signs = "+-*/"
 
-            for sign in signs:
+            for sign in signs: # получение индекса знака
                 try:
                     SignIndex = expression.index(sign)
                 except:
@@ -42,10 +43,16 @@ class Model:
             if (SignIndex == None):
                 return False
             
-            base = expression[:SignIndex]
+            #имея индекс знака между двумя числами, можем вытащить эти значения 
+            #пример: есть пример 5-50%; у нас есть индекс знака минуса - 1, 
+            #все что до минуса, это первое число, все что после минуса - это второе число
+
+            base = expression[:SignIndex] 
             percent = expression[SignIndex+1:-1]
             sign = expression[SignIndex]
 
+            #подставялем числа в формулу (50 * 5 / 100), получаем 50 процентов от 5
+            #и потом вычитаем это из 50
             result += str(f"{float(base)} {sign} {float(percent)} * {float(base)} / 100")
         except:
             pass
